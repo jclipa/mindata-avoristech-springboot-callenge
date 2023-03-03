@@ -57,7 +57,7 @@ spring:
     console.enabled: true
     
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: PLAINTEXT://localhost:9092
 
     consumer:
       group-id: searches_group

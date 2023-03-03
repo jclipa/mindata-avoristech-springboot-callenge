@@ -53,6 +53,15 @@ public class SearchEntity implements Serializable {
 		super();
 	}
 
+	public SearchEntity(final String searchId, String hotelId, Date checkIn, Date checkOut, Set<Integer> ages) {
+		this();
+		this.searchId = searchId;
+		this.hotelId = hotelId;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.ages = ages;
+	}
+
 	public SearchEntity(final String searchId, final SearchDTO searchReqDto) {
 		this();
 		this.searchId = searchId;

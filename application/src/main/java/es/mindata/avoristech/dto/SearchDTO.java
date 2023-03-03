@@ -1,21 +1,28 @@
 package es.mindata.avoristech.dto;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import es.mindata.avoristech.domain.SearchEntity;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class SearchDTO {
+public class SearchDTO implements Serializable {
+	private static final long serialVersionUID = 7021190517824322421L;
 
 	@NotNull
 	private String hotelId;
 
 	@NotNull
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date checkIn;
 
 	@NotNull
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date checkOut;
 
 	@NotNull
@@ -36,6 +43,34 @@ public class SearchDTO {
 		this.checkIn = searchEntity.getCheckIn();
 		this.checkOut = searchEntity.getCheckOut();
 		this.ages = searchEntity.getAges();
+	}
+
+	/*
+	 * HashCode, Equals & ToString
+	 */
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ages, checkIn, checkOut, hotelId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SearchDTO other = (SearchDTO) obj;
+		return Objects.equals(ages, other.ages) && Objects.equals(checkIn, other.checkIn)
+				&& Objects.equals(checkOut, other.checkOut) && Objects.equals(hotelId, other.hotelId);
+	}
+
+	@Override
+	public String toString() {
+		return "SearchDTO [hotelId=" + hotelId + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", ages=" + ages
+				+ "]";
 	}
 
 	/*
